@@ -1,6 +1,5 @@
 import { createGlobalStyle } from "styled-components"
 
-
 export default createGlobalStyle`
   /* latin */
   @font-face {
@@ -15,6 +14,11 @@ export default createGlobalStyle`
     outline: 0;
     box-sizing: border-box;
     font-family: "Roboto";
+  }
+  body {
+    width: 100%;
+    max-width: 1024px;
+    margin: 0 auto;
   }
 `
 
