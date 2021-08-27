@@ -15,9 +15,6 @@ export const Footer = styled.footer`
     width: 50%;
     display: flex;
     align-items: center;
-    a {
-      margin: 0 auto;
-    }
     img {
       @media (max-width: 768px) {
         height: 60px;
@@ -28,3 +25,7 @@ export const Footer = styled.footer`
     }
   }
 `
+
+export const A = styled.a`
+  margin: 0 auto;
+`;
