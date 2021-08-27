@@ -1,4 +1,4 @@
-import { Header, Nav, Project } from "components";
+import { Header, Nav, Project, Footer } from "components";
 import { projects } from "services/data";
 import * as S from "./styles";
 
@@ -15,6 +15,7 @@ const Home = () => {
           </Project>
         ))}
       </S.Main>
+      <Footer />
     </>
   );
 };
