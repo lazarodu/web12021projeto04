@@ -12,10 +12,10 @@ const Nav = () => {
       </label>
       <ul>
         <li>
-          <Link to="">Home</Link>
+          <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="">FAQ</Link>
+          <Link to="/faq">FAQ</Link>
         </li>
       </ul>
     </S.Nav>

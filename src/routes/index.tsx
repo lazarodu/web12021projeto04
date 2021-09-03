@@ -1,10 +1,11 @@
 import { Switch, Route } from "react-router-dom";
-import { Home } from "pages";
+import { Home, Faq } from "pages";
 
 const Routes = () => {
   return (
     <Switch>
-      <Route path="/" component={Home} />
+      <Route path="/faq" exact component={Faq} />
+      <Route path="/" exact component={Home} />
     </Switch>
   );
 };

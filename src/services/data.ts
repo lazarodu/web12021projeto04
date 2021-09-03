@@ -30,3 +30,21 @@ export const projects = [
     site: "Site de Natureza"
   },
 ]
+
+export const faqs = [
+  {
+    id: 1,
+    pergunta: "Gostaram da aula?",
+    resposta: "Gostei muito"
+  },
+  {
+    id: 2,
+    pergunta: "Foi cansativa?",
+    resposta: "Um pouco"
+  },
+  {
+    id: 3,
+    pergunta: "Já está na hora de descansar?",
+    resposta: "Daqui alguns minutos"
+  },
+]
