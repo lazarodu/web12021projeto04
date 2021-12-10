@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components"
+import styled, { createGlobalStyle } from "styled-components"
 
 export default createGlobalStyle`
   /* latin */
@@ -20,6 +20,9 @@ export default createGlobalStyle`
     max-width: 1024px;
     margin: 0 auto;
   }
+`
+export const Table = styled.table`
+  
 `
 
 export const colors = {

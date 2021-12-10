@@ -1,5 +1,5 @@
 import { Header, Nav, Footer } from "components";
-import { faqs } from "services/data";
+import { faqs } from "services/dataAntigo";
 import * as S from "./styles";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 
