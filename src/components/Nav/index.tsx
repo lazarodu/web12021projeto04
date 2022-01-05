@@ -1,7 +1,9 @@
+import { useAuth } from "hooks/auth";
 import { Link } from "react-router-dom";
 import * as S from "./styles";
 
 const Nav = () => {
+  const { token } = useAuth();
   return (
     <S.Nav>
       <input id="menu-toggle" type="checkbox" />
@@ -18,6 +20,24 @@ const Nav = () => {
           <Link to="/faq">FAQ</Link>
         </li>
       </ul>
+      <S.LoginReg>
+        <ul>
+          {token ? (
+            <li>
+              <Link to="/adm">Administrar</Link>
+            </li>
+          ) : (
+            <>
+              <li>
+                <Link to="/register">Registrar</Link>
+              </li>
+              <li>
+                <Link to="/login">Login</Link>
+              </li>
+            </>
+          )}
+        </ul>
+      </S.LoginReg>
     </S.Nav>
   );
 };

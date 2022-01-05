@@ -3,7 +3,13 @@ import {
   IResponseUser,
   IUser,
 } from "interface/user.interface";
-import React, { createContext, useContext, useState, useCallback } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useCallback,
+  useEffect,
+} from "react";
 import api from "services/api";
 import { apiUser } from "services/data";
 
@@ -22,10 +28,38 @@ const AuthProvider: React.FC = ({ children }) => {
     localStorage.setItem("@web1:user", JSON.stringify(user));
   }, []);
 
+  const removeLocalStorage = useCallback(async () => {
+    localStorage.removeItem("@web1:token");
+    localStorage.removeItem("@web1:user");
+  }, []);
+
+  const signOut = useCallback(async () => {
+    setAuth({} as IResponseUser);
+    await removeLocalStorage();
+    delete api.defaults.headers.common.Authorization;
+  }, [removeLocalStorage]);
+
+  const loadUserStorageData = useCallback(async () => {
+    const token = localStorage.getItem("@web1:token");
+    const user = localStorage.getItem("@web1:user");
+    if (token && user) {
+      api.defaults.headers.common.Authorization = `Bearer ${token}`;
+      setAuth({ token, user: JSON.parse(user) });
+    }
+  }, []);
+
+  useEffect(() => {
+    loadUserStorageData();
+  }, [loadUserStorageData]);
+
   return (
     <AuthContext.Provider
       value={{
         signIn,
+        signOut,
+        loadUserStorageData,
+        token: auth.token,
+        user: auth.user,
       }}
     >
       {children}

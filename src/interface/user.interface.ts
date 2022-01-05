@@ -12,9 +12,9 @@ export interface IResponseUser {
 }
 
 export interface IAuthContextData {
-  registry(credentials: IUser): Promise<void>
   signIn(credentials: IUser): Promise<void>
   signOut(): Promise<void>
+  loadUserStorageData(): Promise<void>
   token: string
   user: {
     id: number

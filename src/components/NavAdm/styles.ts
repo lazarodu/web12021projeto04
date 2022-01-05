@@ -134,9 +134,12 @@ export const LoginReg = styled.div`
         background-color: ${colors.green};
         cursor: pointer;
       }
-      a {
-        text-decoration: none;
+      button {
+        background-color: transparent;
+        border: 0;
+        font-size: 1rem;
         color: ${colors.black};
+        cursor: pointer;
       }
     }
   }

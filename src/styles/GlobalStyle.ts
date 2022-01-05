@@ -1,4 +1,6 @@
-import styled, { createGlobalStyle } from "styled-components"
+import { createGlobalStyle } from "styled-components"
+import 'react-toastify/dist/ReactToastify.css';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 export default createGlobalStyle`
   /* latin */
@@ -21,9 +23,6 @@ export default createGlobalStyle`
     margin: 0 auto;
   }
 `
-export const Table = styled.table`
-  
-`
 
 export const colors = {
   blue: "#3c7196",
@@ -32,5 +31,6 @@ export const colors = {
   shadow: "rgba(0, 0, 0, 0.25)",
   white: "#ffffff",
   black: "#000000",
-  gray: "#cccccc"
+  gray: "#cccccc",
+  red: "#660000"
 }
