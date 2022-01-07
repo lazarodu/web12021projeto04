@@ -20,12 +20,10 @@ const Login = () => {
     async (data) => {
       try {
         setIsLoading(true);
-        console.log(data);
         await signIn(data);
         toast.success("Login realizado com sucesso!");
         history.push("/");
       } catch (error) {
-        console.log(error);
         const err = error as AxiosError;
         const msg = err.response?.data;
         toast.error(`Falha ao fazer o login! ${msg}`);
