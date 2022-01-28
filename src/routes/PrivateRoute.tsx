@@ -7,6 +7,7 @@ import {
   RouteComponentProps,
   RouteProps,
 } from "react-router-dom";
+import { parseISO, isAfter } from "date-fns";
 
 interface PrivateRouteParams extends RouteProps {
   component:
@@ -19,7 +20,7 @@ export function PrivateRoute({
   ...rest
 }: PrivateRouteParams) {
   const [isLoading, setIsLoading] = useState(true);
-  const { token, loadUserStorageData } = useAuth();
+  const { token, loadUserStorageData, expiresAt } = useAuth();
 
   const fetchData = useCallback(async () => {
     await loadUserStorageData();
@@ -38,7 +39,7 @@ export function PrivateRoute({
         <Route
           {...rest}
           render={(props) =>
-            token ? (
+            token && expiresAt && isAfter(parseISO(expiresAt), new Date()) ? (
               <Component {...props} />
             ) : (
               <Redirect

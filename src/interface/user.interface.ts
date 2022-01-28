@@ -9,6 +9,7 @@ export interface IResponseUser {
     email: string
   }
   token: string
+  expiresAt: string
 }
 
 export interface IAuthContextData {
@@ -20,4 +21,5 @@ export interface IAuthContextData {
     id: number
     email: string
   }
+  expiresAt: string
 }

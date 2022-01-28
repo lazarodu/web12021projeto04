@@ -20,16 +20,18 @@ const AuthProvider: React.FC = ({ children }) => {
 
   const signIn = useCallback(async ({ email, password }: IUser) => {
     const response = await apiUser.login({ email, password });
-    const { token, user } = response.data;
+    const { token, user, expiresAt } = response.data;
     api.defaults.headers.common.Authorization = `Bearer ${token}`;
-    setAuth({ token, user });
+    setAuth({ token, user, expiresAt });
 
     localStorage.setItem("@web1:token", token);
+    localStorage.setItem("@web1:expiresAt", expiresAt);
     localStorage.setItem("@web1:user", JSON.stringify(user));
   }, []);
 
   const removeLocalStorage = useCallback(async () => {
     localStorage.removeItem("@web1:token");
+    localStorage.removeItem("@web1:expiresAt");
     localStorage.removeItem("@web1:user");
   }, []);
 
@@ -41,10 +43,11 @@ const AuthProvider: React.FC = ({ children }) => {
 
   const loadUserStorageData = useCallback(async () => {
     const token = localStorage.getItem("@web1:token");
+    const expiresAt = localStorage.getItem("@web1:expiresAt");
     const user = localStorage.getItem("@web1:user");
-    if (token && user) {
+    if (token && user && expiresAt) {
       api.defaults.headers.common.Authorization = `Bearer ${token}`;
-      setAuth({ token, user: JSON.parse(user) });
+      setAuth({ token, user: JSON.parse(user), expiresAt });
     }
   }, []);
 
@@ -60,6 +63,7 @@ const AuthProvider: React.FC = ({ children }) => {
         loadUserStorageData,
         token: auth.token,
         user: auth.user,
+        expiresAt: auth.expiresAt,
       }}
     >
       {children}
