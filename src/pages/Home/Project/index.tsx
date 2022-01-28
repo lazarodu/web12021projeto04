@@ -14,11 +14,12 @@ import {
 } from "react-icons/fa";
 import { ICurtido } from "interface/curtir.interface";
 import { toast } from "react-toastify";
+import { parseISO, isAfter } from "date-fns";
 
 const Home = () => {
   const [projects, setProjects] = useState<IProjectData[]>();
   const [isLoading, setIsLoading] = useState(true);
-  const { user } = useAuth();
+  const { user, expiresAt } = useAuth();
 
   const fetchData = useCallback(async () => {
     const response = await apiProjeto.index();
@@ -82,7 +83,7 @@ const Home = () => {
                 <Project key={item.id}>
                   <h4>{item.nome}</h4>
                   <p>{item.projeto}</p>
-                  {user && (
+                  {user && isAfter(parseISO(expiresAt), new Date()) && (
                     <div>
                       <S.Button
                         type="button"
